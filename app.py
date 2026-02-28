@@ -110,10 +110,10 @@ def load_sample_data():
         'Last_Recharge_Amount_NGN', 'Report_Month'
     ])
     
-    # Sort chronologically by converting the month strings to datetime
-    # Use coerce to handle any edge cases where a format might be wrong, rather than crashing
-    df['Month_DT'] = pd.to_datetime(df['Report_Month'], format='%b-%Y', errors='coerce')
-    df = df.sort_values(by=['Month_DT']).drop(columns=['Month_DT'])
+    # Sort chronologically by using a direct mapping to avoid platform-specific date parsing errors
+    month_map = {'Jan-2025': 1, 'Feb-2025': 2, 'Mar-2025': 3, 'Apr-2025': 4, 'May-2025': 5, 'Jun-2025': 6}
+    df['Month_Sort'] = df['Report_Month'].map(month_map)
+    df = df.sort_values(by=['Month_Sort']).drop(columns=['Month_Sort'])
     
     return df
 
