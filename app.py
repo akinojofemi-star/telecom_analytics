@@ -292,9 +292,12 @@ def main():
                       mode='lines+markers', name='Voice (Min)', yaxis='y2', line=dict(color='#00CC66', width=3)))
         
         fig4.update_layout(
-            margin=dict(l=0, r=0, t=20, b=0), plot_bgcolor='rgba(0,0,0,0)',
-            yaxis=dict(title='Data (GB)', titlefont=dict(color='#0066CC'), tickfont=dict(color='#0066CC')),
-            yaxis2=dict(title='Voice (Min)', titlefont=dict(color='#00CC66'), tickfont=dict(color='#00CC66'), overlaying='y', side='right'),
+            margin=dict(l=0, r=0, t=20, b=0),
+            plot_bgcolor='rgba(0,0,0,0)',
+            yaxis_title='Data (GB)',
+            yaxis_title_font_color='#0066CC',
+            yaxis_tickfont_color='#0066CC',
+            yaxis2=dict(title='Voice (Min)', titlefont_color='#00CC66', tickfont_color='#00CC66', overlaying='y', side='right'),
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
         st.plotly_chart(fig4, use_container_width=True, config=chart_config)
