@@ -291,13 +291,20 @@ def main():
         fig4.add_trace(go.Scatter(x=trend['Report_Month'], y=trend['Voice_Minutes'], 
                       mode='lines+markers', name='Voice (Min)', yaxis='y2', line=dict(color='#00CC66', width=3)))
         
+        # To avoid Plotly version conflicts on Streamlit Cloud, we use explicit standard dictionary unpacking
         fig4.update_layout(
             margin=dict(l=0, r=0, t=20, b=0),
             plot_bgcolor='rgba(0,0,0,0)',
-            yaxis_title='Data (GB)',
-            yaxis_title_font_color='#0066CC',
-            yaxis_tickfont_color='#0066CC',
-            yaxis2=dict(title='Voice (Min)', titlefont_color='#00CC66', tickfont_color='#00CC66', overlaying='y', side='right'),
+            yaxis=dict(
+                title=dict(text='Data (GB)', font=dict(color='#0066CC')),
+                tickfont=dict(color='#0066CC')
+            ),
+            yaxis2=dict(
+                title=dict(text='Voice (Min)', font=dict(color='#00CC66')),
+                tickfont=dict(color='#00CC66'),
+                overlaying='y',
+                side='right'
+            ),
             legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1)
         )
         st.plotly_chart(fig4, use_container_width=True, config=chart_config)
